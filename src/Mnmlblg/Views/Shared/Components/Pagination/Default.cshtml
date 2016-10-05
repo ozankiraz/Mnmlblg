@@ -1,0 +1,22 @@
+﻿@model Mnmlblg.Models.PaginationViewModel
+
+@if (Model.PreviousPagePath != null || Model.NextPagePath != null)
+{
+    <!-- pagintation -->
+    <div id="pagination" class="clearfix">
+
+        @if (!string.IsNullOrEmpty(Model.PreviousPagePath))
+        {
+            <div class="past-page"><a href="@Model.PreviousPagePath"> » Newer Posts</a>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.NextPagePath))
+        {
+            <div class="next-page"><a href="@Model.NextPagePath"> « Older Posts</a>
+            </div>
+        }
+
+    </div>
+    <!-- pagination -->
+}

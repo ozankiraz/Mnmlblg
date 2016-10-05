@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "_Layout";
+}
+    
+@foreach (var post in Model.PostViewModels)
+{
+    <article class="post">
+        <h1 class="title">
+            <a href="/@post.SluggedTitle" title="@post.Title">
+                @post.Title
+            </a>
+        </h1>
+        <div class="post-meta">
+            <span class="comments-link">
+                @post.PostDateTime
+            </span>
+        </div>
+        <!--/post-meta -->
+        <div class="the-content">
+            <div id="generated">
+                <div id="generated_padding">
+                    <p>@Html.Raw(post.Body)</p>
+                </div>
+            </div>
+        </div>
+        <!-- the-content -->
+        <div class="meta clearfix">
+            <div class="category">
+                <ul class="post-categories">
+                    <li><a href="/category/@post.Category" rel="category tag">@post.Category</a></li>
+                </ul>
+            </div>
+            <div class="tags"></div>
+        </div>
+        <!-- Meta -->
+    </article>
+}
+
+@await Component.InvokeAsync("Pagination", new { NewerPostsPageNumber = Model.PreviousPagePath, OlderPostsPageNumber = Model.NextPagePath})

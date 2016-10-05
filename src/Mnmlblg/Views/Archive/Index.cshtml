@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<h1>@Model.Title</h1>
+
+@foreach (var year in Model.PostsByYear)
+{
+    <p><h2>@year.Year</h2></p>
+    @foreach (var month in year.PostsByMonth)
+     {
+         <h3>@month.MonthName</h3>
+        @foreach (var post in month.PostByDay)
+        {
+            <p><h4>@post.Day - <a href="@post.PostLink">@post.PostTitle</a></h4></p>
+        }
+    }
+}

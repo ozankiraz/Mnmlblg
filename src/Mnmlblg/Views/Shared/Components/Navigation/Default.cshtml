@@ -1,0 +1,33 @@
+﻿@model Mnmlblg.Models.NavigationViewModel
+
+<header id="masthead" class="site-header" role="banner">
+    <div class="container">
+        <div class="gravatar">
+            @if (!string.IsNullOrEmpty(Model.AvatarUrl))
+            {
+                <img alt="" src="@Model.AvatarUrl" srcset="@Model.AvatarUrl" class="avatar avatar-100 photo" height="100" width="100">
+            }
+        </div>
+        <!--/ author -->
+        <div id="brand">
+            <h1 class="site-title"><a href="/" title="@Model.BlogTitle" rel="home">@Model.BlogTitle</a> — <span>@Model.BlogSlogan</span></h1>
+        </div>
+        <!-- /brand -->
+        <nav role="navigation" class="site-navigation main-navigation">
+            <div class="menu">
+                <ul>
+                    <li class="page_item page-item-2"><a href="@Model.AllPostsUrl">All Posts</a></li>
+                    <li class="page_item page-item-2"><a href="@Model.FeedUrl">Rss Feed</a></li>
+                    @foreach (var navigationItem in Model.NavigationItems)
+                    {
+                        <li class="page_item page-item-2"><a href="/@navigationItem.UrlName">@navigationItem.Name</a></li>
+                    }
+                </ul>
+            </div>
+        </nav>
+        <!-- .site-navigation .main-navigation -->
+        <div class="clear"></div>
+    </div>
+    <!--/container -->
+</header>
+<!-- #masthead .site-header -->

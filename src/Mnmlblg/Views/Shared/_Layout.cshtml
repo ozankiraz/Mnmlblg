@@ -1,0 +1,37 @@
+﻿<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>@ViewBag.Title</title>
+    <link rel="alternate" type="application/rss+xml" title="Ozan's Development Diaries » Feed" href="http://localhost/feed/">
+    <link rel="stylesheet" id="less-style-css" href="~/css/style.css" type="text/css" media="all">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+</head>
+<body class="home blog">
+
+    @await Component.InvokeAsync("Navigation")
+
+    <div class="container">
+        <div id="primary">
+            <div id="content" role="main">
+
+                @RenderBody()
+
+                
+            </div>
+            <!-- #content .site-content -->
+        </div>
+        <!-- #primary .content-area -->
+    </div>
+    <!-- / container-->
+    <footer class="site-footer" role="contentinfo">
+        <div class="site-info container">
+            <a href="http://wordpress.org/" title="A Semantic Personal Publishing Platform" rel="generator">Mnml Blg</a>
+            <span class="sep"> and </span>
+            <a href="http://lessmade.com/themes/less" rel="theme">LESS</a> by <a href="http://jarederickson.com" rel="designer">Jared Erickson</a>
+        </div>
+        <!-- .site-info -->
+    </footer>
+    <!-- #colophon .site-footer -->
+</body>
+</html>

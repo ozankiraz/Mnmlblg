@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "_Layout";
+}
+    
+    <article class="post">
+        <h1 class="title">
+            <a href="/@Model.SluggedTitle" title="@Model.Title">
+                @Model.Title
+            </a>
+        </h1>
+        <div class="post-meta">
+            <span class="comments-link">
+                @Model.PostDateTime
+            </span>
+        </div>
+        <!--/post-meta -->
+        <div class="the-content">
+            <div id="generated">
+                <div id="generated_padding">
+                    <p>@Html.Raw(Model.Body)</p>
+                </div>
+            </div>
+        </div>
+        <!-- the-content -->
+        <div class="meta clearfix">
+            <div class="category">
+                <ul class="post-categories">
+                    <li><a href="/category/@Model.Category" rel="category tag">@Model.Category</a></li>
+                </ul>
+            </div>
+            <div class="tags"></div>
+        </div>
+        <!-- Meta -->
+    </article>
