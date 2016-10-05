@@ -1,6 +1,8 @@
 # Mnmlblg
 Personal Blog Inspired By Minimalism
+
 I inspired by http://mnmlist.com/ and https://github.com/alliswell/Less
+
 original themes was designed for wordpress, and I thought I could make it more "Minimalist"
 
 Mnmlblg is personal blog coded with Asp.Net core
