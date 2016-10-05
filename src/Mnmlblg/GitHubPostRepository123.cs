@@ -3,7 +3,7 @@ using Mnmlblg.Models;
 
 namespace Mnmlblg
 {
-    public class GitHubPostRepository : IPostRepository
+    public class GitHubPostRepository123 : IPostRepository
     {
         public IEnumerable<Post> AllPosts { get; }
         public IEnumerable<Post> GetPostsForPaginatedPage(int pageNumber)
