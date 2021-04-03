@@ -38,7 +38,7 @@ namespace Mnmlblg
                 .AddXmlSerializerFormatters()
                 .AddXmlDataContractSerializerFormatters();
 
-            services.AddSingleton<IPostRepository, SamplePostRepository>();
+            services.AddSingleton<IPostRepository, MarkdownPostsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,12 +73,10 @@ namespace Mnmlblg
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseMvc();
             app.UseStaticFiles();
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             Encoding.GetEncoding("windows-1254");
-            //Encoding.GetEncoding("Cyrillic");
         }
     }
 }
