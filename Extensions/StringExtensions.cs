@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Mnmlblg.Extensions
@@ -7,7 +8,7 @@ namespace Mnmlblg.Extensions
     {
         public static string GenerateSlug(this string phrase)
         {
-            var slug = phrase.RemoveAccent().ToLower();
+            var slug = phrase.RemoveDiacritics().ToLower();
 
             slug = Regex.Replace(slug, @"[^a-z0-9\s-]", ""); // invalid chars          
             slug = Regex.Replace(slug, @"\s+", " ").Trim(); // convert multiple spaces into one space  
@@ -17,18 +18,27 @@ namespace Mnmlblg.Extensions
             return slug;
         }
 
-        public static string RemoveAccent(this string txt)
+        public static string RemoveDiacritics(this string text)
         {
-            var bytes = Encoding.GetEncoding("Cyrillic").GetBytes(txt);
-            return Encoding.ASCII.GetString(bytes);
-        }
+            string stFormD = text.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
 
+            for (int ich = 0; ich < stFormD.Length; ich++)
+            {
+                UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(stFormD[ich]);
+                if (uc != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(stFormD[ich]);
+                }
+            }
+
+            return (sb.ToString().Normalize(NormalizationForm.FormC));
+        }
+        
         public static string GetPreview(this string stringForPreview, int maxCharacters)
         {
             var length = stringForPreview.Length;
-
             var endPosition = length > maxCharacters ? maxCharacters : length;
-
             var preview = string.Format("{0}...", stringForPreview.Substring(0, endPosition));
 
             return preview.Contains("data:image") ? string.Empty : preview;

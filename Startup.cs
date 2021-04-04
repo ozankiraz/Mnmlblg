@@ -31,14 +31,10 @@ namespace Mnmlblg
             services.Configure<BlogConfiguration>(options => settings.GetSection("BlogConfiguration").Bind(options));
 
             services.AddSingleton<IMarkDown, Markdown>();
-
             services.AddSingleton<IRss2FeedGenerator, Rss2FeedGenerator>();
-            services
-                .AddMvc()
-                .AddXmlSerializerFormatters()
-                .AddXmlDataContractSerializerFormatters();
-
             services.AddSingleton<IPostRepository, MarkdownPostsRepository>();
+            
+            services.AddMvc();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,24 +55,12 @@ namespace Mnmlblg
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseStaticFiles();
-
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            Encoding.GetEncoding("windows-1254");
         }
     }
 }
