@@ -11,3 +11,5 @@ Mnmlblg is personal blog coded with Asp.Net core
 * Rss feed for posts
 
 and also it was a good excuse to learn MVC / Asp.net core as pure backend guy :)
+
+![Screenshot](https://raw.githubusercontent.com/ozankiraz/Mnmlblg/master/screenshot.png)
