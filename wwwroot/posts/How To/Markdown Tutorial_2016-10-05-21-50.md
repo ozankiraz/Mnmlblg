@@ -32,7 +32,33 @@ Paragraphs must be separated by a blank line. Basic formatting of *italics* and 
 
 ### Code block
 
-    Code blocks are very useful for developers and other people who look at code or other things that are written in plain text. As you can see, it uses a fixed-width font.
+    namespace Remove {
+    using System;
+    using System.Text;
+    using System.Globalization;
+      class Remove {
+        [STAThread]
+        static void Main(string[] args) {
+          foreach(string st in args) {
+            Console.WriteLine(RemoveDiacritics(st));
+          }
+        }
+
+        static string RemoveDiacritics(string stIn) {
+          string stFormD = stIn.Normalize(NormalizationForm.FormD);
+          StringBuilder sb = new StringBuilder();
+
+          for(int ich = 0; ich < stFormD.Length; ich++) {
+            UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(stFormD[ich]);
+            if(uc != UnicodeCategory.NonSpacingMark) {
+              sb.Append(stFormD[ich]);
+            }
+          }
+
+          return(sb.ToString().Normalize(NormalizationForm.FormC));
+        }
+      }
+    }
 
 You can also make `inline code` to add code into other things.
 
